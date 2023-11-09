@@ -126,7 +126,7 @@ def buy():
         cash = userscash[0]["cash"]
 
 
-
+        
         transactions_data = db.execute(
             "SELECT symbol, sum(shares) as shares FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
 
@@ -302,7 +302,6 @@ def sell():
     user_id = session["user_id"]
     
 
-
     # sell
     if request.method == "GET":
         rows = db.execute("SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
@@ -321,7 +320,8 @@ def sell():
         total_value = 0
 
         data = []
-
+        sum = 0
+        
         for row in transactions_data:
 
             # I did shares instead of sum("shares") in couple places below which may mess it up
@@ -385,8 +385,10 @@ def stats():
     data = []
 
     for row in transactions_db:
-        # I did shares instead of sum("shares") in couple places below which may mess it up
-        data.append({"time": row["date"], "sum": row["sum"]})
+        
+        if row["shares"] < 0:
+            # I did shares instead of sum("shares") in couple places below which may mess it up
+            data.append({"time": row["date"], "sum": row["sum"]})
 
     return render_template("stats.html", data=data)
 
