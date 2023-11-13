@@ -1,0 +1,41 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <h1>History</h1>
+    <table class="table">
+        <tr>
+            <th scope="col">Method</th>
+            <th scope="col">Symbol</th>
+            <th scope="col">Price</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Time Stamp</th>
+        </tr>
+          <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for data in data%}
+            <tr>
+                <th scope="row"> {{ data["method"] }} </th>
+                <td> {{ data["symbol"] }} </td>
+                <td> {{ data["price"] }} </td>
+                <td>{{ data["shares"] }}</td>
+                <td>{{ data["time"] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ total }}</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+{% endblock %}

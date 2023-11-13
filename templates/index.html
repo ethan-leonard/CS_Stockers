@@ -1,0 +1,56 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Index
+{% endblock %}
+
+{% block main %}
+    <h1>Index</h1>
+
+    <table class="table">
+        <tr>
+            <th scope="col">Symbol</th>
+            <th scope="col">Name</th>
+            <th scope="col">Shares</th>
+            <th scope="col">Price</th>
+            <th scope="col">TOTAL</th>
+          </tr>
+          <tbody>
+            <!-- TODO: Loop through the database entries to display them in this table -->
+            {% for data in data%}
+            <tr>
+                <th scope="row"> {{ data["symbol"] }} </th>
+                <td> {{ data["name"] }} </td>
+                <td> {{ data["shares"] }} </td>
+                <td> {{ data["price"] }} </td>
+                <td>{{ data["total"] }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th scope="row">CASH</th>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td >{{ cash }}</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>{{ total }}</td>
+            </tr>
+        </tfoot>
+
+    </table>
+
+<form action="/" method="post">
+<div class="mb-3">
+    <input autocomplete="off" autofocus class="form-control mx-auto w-auto" id="amount" name="amount" placeholder="Amount" type="int">
+</div>
+<button class="btn btn-primary" type="submit">Add Funds</button></form>
+
+
+{% endblock %}

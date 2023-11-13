@@ -1,0 +1,96 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Statistics
+{% endblock %}
+
+{% block main %}
+
+    <head>
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+     
+    <body>
+
+        <h1>Total Value</h1>
+        <br>
+
+        <div style="height: 75vh; width: 90%; margin: auto;">
+            <canvas id="myChart"></canvas>
+        </div>
+
+        <!--style="display: none;"-->
+        <br><br>
+        <table id="stats" class="table" >
+            <tr>
+                <th scope="col">Total</th>
+                <th scope="col">Time</th>
+            </tr>
+              <tbody>
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {% for data in data%}
+                <tr>
+                    <th scope="row"> {{ data["sum"] }} </th>
+                    <td> {{ data["time"] }} </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                // Get the table element by its ID
+                var table = document.getElementById("stats");
+                console.log(table);
+
+                // Create an empty array to store the table data
+                var values = [10000];
+                var times= ["Start"];
+
+                // Loop through the rows of the table
+                for (var i = 1; i < table.rows.length; i++) {
+                    var row = table.rows[i];
+                    var timeCell = row.cells[1];
+                    var valueCell = row.cells[0];
+
+                    // Extract the text content from the cells and push them into the respective arrays
+                    times.push(timeCell.textContent.trim());  // Use trim() to remove leading/trailing spaces
+                    values.push(parseFloat(valueCell.textContent));  // Convert the text to a number
+                };
+
+                console.log(times);
+                console.log(values);
+                /*
+                var sTime = ["Current"];
+                var sValue = ["10000"];
+                */
+
+
+                const labels = times;
+                const data = {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Profit',
+                        backgroundColor: 'rgb(255, 99, 132)',
+                        borderColor: 'rgb(255, 99, 132)',
+                        data: values,
+                    }]
+                };
+
+                const config = {
+                    type: 'line',
+                    data: data,
+                    options: { maintainAspectRatio: false }
+                };
+
+                const myChart = new Chart(
+                    document.getElementById('myChart'),
+                    config
+                );
+
+
+            });
+        </script>
+
+    </body>
+{% endblock %}

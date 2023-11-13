@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <h1>Quote</h1>
+    <br>
+    <p>Name: {{name}}</p>
+    <p>Symbol: {{symbol}}</p>
+    <p>Price: {{price}}</p>
+    <p>Previous Close: {{previousClose}}</p>
+    <p>Week 52 High: {{week52High}}</p>
+    <p>Week 52 Low: {{week52Low}}</p>
+    <p>Year to Date Change: {{ytdChange}}%</p>
+{% endblock %}
