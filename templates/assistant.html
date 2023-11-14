@@ -1,0 +1,29 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Chat
+{% endblock %}
+
+{% block main %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Virtual Assistant</h1>
+                <br>
+                <div class="chat">
+                    <div class="chat__messages">
+                            <div class="chat__message">
+                                <div class="chat__message__content">{{ response }}</div>
+                            </div>
+                    </div>
+                    <br><br>
+                    
+                    <form action="/assistant" method="post" class="chat__form">
+                        <input id="prompt" type="text" name="prompt" class="chat__form__input" placeholder="Message">
+                        <button type="submit" class="chat__form__button">Send</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -5,13 +5,175 @@
 {% endblock %}
 
 {% block main %}
-    <h1>Quote</h1>
-    <br>
-    <p>Name: {{name}}</p>
-    <p>Symbol: {{symbol}}</p>
-    <p>Price: {{price}}</p>
-    <p>Previous Close: {{previousClose}}</p>
-    <p>Week 52 High: {{week52High}}</p>
-    <p>Week 52 Low: {{week52Low}}</p>
-    <p>Year to Date Change: {{ytdChange}}%</p>
+    <div id="percent" style="display: none;">{{ytdChange}}</div>
+    <div id="yClose" style="display: none;">{{previousClose}}</div>
+    <div id="tClose" style="display: none;">{{price}}</div>
+
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    </head>
+    <div class="flex-container">
+        <div style="margin-right: 10%;">
+            <h1>Quote</h1>
+            <br>
+            <p>Name: {{name}}</p>
+            <p>Symbol: {{symbol}}</p>
+            <p>Price: {{price}}</p>
+            <p>Previous Close: {{previousClose}}</p>
+            <p>Week 52 High: {{week52High}}</p>
+            <p>Week 52 Low: {{week52Low}}</p>
+        </div>
+
+        <div id="barGraph" style="flex-grow: 0.08; margin-left: 10%">
+                <div id="progressBar"></div>
+                <div style="font-weight:bold" id="valueLabel">50%</div>
+                <h6 id="label">Year to Date Change</h6>
+        </div>
+
+        <div id="barGraph2" style="flex-grow: 0.08; margin-left: 10%">
+            <div id="progressBar2"></div>
+            <div style="font-weight:bold" id="valueLabel2">50%</div>
+            <h6 id="label2">Last 24 Hours</h6>
+        </div>
+    </div>
+    
+    <script>
+        // Assume the stock value (change this dynamically based on stock data)
+        const percentDiv = document.getElementById('percent');
+        const stockValue = parseFloat(percentDiv.textContent) // Example value
+
+        // Get the progress bar and value label element
+        const progressBar = document.getElementById('progressBar');
+        const valueLabel = document.getElementById('valueLabel');
+
+        // Set the height of the progress bar based on the stock value
+        const barHeight = Math.abs(stockValue);
+        progressBar.style.height = barHeight + '%'
+
+        // Set the color based on positive or negative value
+        if (stockValue >= 0) {
+        progressBar.style.backgroundColor = '#4CAF50'; // Green for positive values
+        } else {
+        progressBar.style.backgroundColor = '#FF0000'; // Red for negative values
+        }
+
+        // Update the value label
+        if (stockValue >= 0) {
+            valueLabel.textContent = "↑ " +stockValue + '%';
+        } else {
+            valueLabel.textContent =  stockValue + '%' + " ↓";
+        }
+        
+
+        // Second Graph
+        // Assume the stock value (change this dynamically based on stock data)
+        const yCloseDiv = document.getElementById('yClose');
+        const yClose = parseFloat((yCloseDiv.textContent).substring(1)); // Example value
+
+        const tCloseDiv = document.getElementById('tClose');
+        const tClose = parseFloat((tCloseDiv.textContent).substring(1));
+
+        const dayChange = ((parseInt(((tClose/yClose)-1)*10000))/100);
+
+        // Get the progress bar and value label element
+        const progressBar2 = document.getElementById('progressBar2');
+        const valueLabel2 = document.getElementById('valueLabel2');
+
+        // Set the height of the progress bar based on the stock value
+        const barHeight2 = Math.abs(dayChange);
+        progressBar2.style.height = barHeight2 + '%'
+
+        // Set the color based on positive or negative value
+        if (dayChange >= 0) {
+        progressBar2.style.backgroundColor = '#4CAF50'; // Green for positive values
+        } else {
+        progressBar2.style.backgroundColor = '#FF0000'; // Red for negative values
+        }
+
+        // Update the value label
+        if (dayChange >= 0) {
+            valueLabel2.textContent = "↑ " + dayChange + '%';
+        } else {
+            valueLabel2.textContent =  dayChange + '%' + " ↓";
+        }
+        
+        
+    </script>
+
+    <style>
+
+        #barGraph {
+            width: 25px;
+            height: 200px; /* Set the desired height */
+            background-color: #eee;
+            position: relative;
+            transform: rotate(180deg); /* Rotate the bar graph to be vertical */
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 2px;
+            }
+
+        #progressBar {
+            width: 100%;
+            background-color: #4CAF50; /* Default color for positive values */
+            border-radius: 7px;
+            }
+
+        #valueLabel {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);
+            color: #333;
+            }
+
+        #label {
+            position: absolute;
+            bottom: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);
+            color: #333;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #barGraph2 {
+            width: 25px;
+            height: 200px; /* Set the desired height */
+            background-color: #eee;
+            position: relative;
+            transform: rotate(180deg); /* Rotate the bar graph to be vertical */
+            border-radius: 8px;
+            border-style: solid;
+            border-width: 2px;
+            }
+
+        #progressBar2 {
+            width: 100%;
+            background-color: #4CAF50; /* Default color for positive values */
+            border-radius: 7px;
+            }
+
+        #valueLabel2 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);
+            color: #333;
+            }
+
+        #label2 {
+            position: absolute;
+            bottom: 85%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(180deg);
+            color: #333;
+        }
+    
+    </style>
+        
 {% endblock %}

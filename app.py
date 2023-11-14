@@ -1,12 +1,15 @@
 import os
 import datetime
 import json
+from openai import OpenAI
+
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
+
 
 from helpers import apology, login_required, lookup, usd
 
@@ -399,3 +402,23 @@ def stats():
 
     return render_template("stats.html", data=data)
 
+@app.route("/assistant", methods=["GET", "POST"])
+@login_required
+def assistant():
+    if request.method == "GET":
+        return render_template("assistant.html")
+    else: 
+        client = OpenAI()
+        prompt = request.form.get("prompt")
+
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a highly professional stock expert and you are talking to a client who wants to buy stocks. You also like to give specific stock recommendations based on market data."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        response = completion.choices[0].message.content
+
+        return render_template("assistant.html", response=response)
