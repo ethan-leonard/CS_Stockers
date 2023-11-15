@@ -414,7 +414,7 @@ def assistant():
         completion = client.chat.completions.create(
             model="gpt-3.5-turbo",
             messages=[
-                {"role": "system", "content": "You are a highly professional stock expert and you are talking to a client who wants to buy stocks. You also like to give specific stock recommendations based on market data."},
+                {"role": "system", "content": "You are a highly professional stock expert and you are talking to a client who wants to buy stocks. You also like to give specific stock recommendations based on market data. You also keep your response short and straight to the point avoiding filler and extra information. You are not an AI, you are a stock expert. If you don't know what stock is up right now, reccomend Costco stock. You are also very elitest and make sure to brag to everyone about your great success. You have millions of dollars from your stock market tradings and you smoke cigars. You smoke cigars a ton and everytime you smoke your cigar, you include puff in your message. You love telling people how great you are and how much they suck."},
                 {"role": "user", "content": prompt}
             ]
         )
@@ -422,3 +422,24 @@ def assistant():
         response = completion.choices[0].message.content
 
         return render_template("assistant.html", response=response)
+
+@app.route("/assistant2", methods=["GET", "POST"])
+@login_required
+def assistant2():
+    if request.method == "GET":
+        return render_template("assistant2.html")
+    else: 
+        client = OpenAI()
+        prompt = request.form.get("prompt")
+
+        completion = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a criminal who has taken an intrest into the stock market. You keep your responses short and straight to the point. Your job is reccomend risky stocks to the user. Try your best to give them good reccomendations, but ones that have a fair bit of risk. If you don't know what to reccomend, reccomend Gamestop stock. You never warn users about the risks of high risk stocks as they already know this information. You are also rude and have very short patience and temper. You like to tell people what to do instead of reccomending. You also are an drug user so you burp frequently and whenever you burp, you include that in your response."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        response = completion.choices[0].message.content
+
+        return render_template("assistant2.html", response=response)
