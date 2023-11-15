@@ -443,3 +443,13 @@ def assistant2():
         response = completion.choices[0].message.content
 
         return render_template("assistant2.html", response=response)
+
+
+
+
+# News Route (By Liao)
+@app.route("/news", methods=["GET"])
+@login_required
+def news():
+    if request.method == "GET":
+        return render_template("news.html")
