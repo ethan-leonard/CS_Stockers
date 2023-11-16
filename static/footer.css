@@ -1,0 +1,53 @@
+/* Scalable Footer CSS (By Liao) */
+@media (max-width: 769px) { /*Media query set to 769px screen size, when the screen size is 769px or less, each row will be stacked underneath the other.*/
+	.row {
+	  flex-direction: column;
+	}
+}
+
+.container { 
+    width: 80%;
+	margin: 0 auto; /*Center the container horizontally.*/
+	max-width: 800px;
+	padding: 20px;
+	background-color: white;
+	border-radius: 10px;
+}
+
+/* Overall Footer Styling */
+footer {
+    background-color: #cac6c6e7;
+	color: rgb(0, 0, 0);
+	padding: 20px;
+    margin-top: 25px;
+}
+
+ul {
+	list-style: none; /*Remove bullet point.*/
+	padding: 0;
+}
+
+li {
+	margin-bottom: 10px;
+}
+
+/* Icon Styling */
+i {
+	margin-right: 8px;
+}
+
+/* Detail Styling of Social Icons */
+.social-icons {
+	display: flex;
+}
+
+.social-icons a {
+	color: rgb(50, 50, 50);
+	margin-right: 20px;
+}
+
+/* Styling of the End Text */
+p {
+	margin-bottom: 0;
+}
+/* End of Scalable Footer CSS (By Liao) */

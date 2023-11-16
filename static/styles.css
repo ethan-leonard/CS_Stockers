@@ -21,3 +21,21 @@ nav .navbar-brand .green
 {
     color: #2e944b;
 }
+
+
+/* Advertisements Styling (By Liao) */
+.CPC, .TSC {
+    display: inline-block;
+    width: 48%; /* Adjust the width as needed */
+    margin: 10px; /* Add margin for spacing between the divisions */
+    vertical-align: top; /* Align the top edges of the inline-block elements */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+}
+/* Additional styling for images */
+.CPC img, .TSC img {
+    max-width: 100%;
+    height: auto;
+}

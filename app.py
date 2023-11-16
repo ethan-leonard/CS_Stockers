@@ -319,7 +319,8 @@ def sell():
                 return render_template("closed.html", route='sell')
         else:
             session.pop("bypass_market_check", None)
-        return render_template("sell.html")
+            rows = db.execute("SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
+            return render_template("sell.html", symbols=[row["symbol"] for row in rows])
     else:
 
         
@@ -465,3 +466,9 @@ def bypass():
     return redirect(url_for(route))
 
 
+# News Route (By Liao)
+@app.route("/news", methods=["GET"])
+@login_required
+def news():
+    if request.method == "GET":
+        return render_template("news.html")

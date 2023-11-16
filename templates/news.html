@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    News
+{% endblock %}
+
+{% block main %}
+<style>
+    .containernews {
+        margin: 0;
+        padding: 0;
+        background-color: #cbcbcb;
+        font-family: Arial, sans-serif;
+        text-align: center;
+    }
+
+    .news-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 20px;
+        align-items: center;
+    }
+
+    .news-block {
+        flex: 0 0 30%; /* Adjust the width as needed */
+        margin: 10px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .news-block img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+        margin-bottom: 10px;
+    }
+
+    a {
+        color: #007BFF;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    p {
+        text-align: justify;
+    }
+    </style>
+
+    <!-- News & Resources Page Main Layout (By Liao) -->
+    <h1>News & Resources</h1>
+    <br>
+    <div class="containernews">
+        <div class="news-container">
+            <div class="news-block">
+                <img style="border-radius: 5px"src="https://ei.marketwatch.com/Multimedia/2014/10/02/Photos/ZQ/MW-CV573_new_mk_20141002184947_ZQ.jpg?uuid=7f9b7aea-4a86-11e4-9dc1-fa6e607794f5">
+                <h3><a href="https://www.marketwatch.com/">MarketWatch</a></h3>
+                <p>How to invest in the booming NFT market: tips and tricks from experts</p>
+            </div>
+
+            <div class="news-block">
+                <img style="border-radius: 5px"src="https://s.yimg.com/os/creatr-uploaded-images/2019-03/46212d00-4653-11e9-bebe-329ac83811b0">
+                <h3><a href="https://finance.yahoo.com/">Yahoo Finance</a></h3>
+                <p>Stay informed on the latest market trends and financial news with Yahoo Finance. From real-time stock updates to expert analyses, discover comprehensive coverage of global markets, company earnings, and economic indicators. </p>
+            </div>
+
+            <div class="news-block">
+                <img style="border-radius: 5px"src="https://th.bing.com/th/id/OIP.65rtnMT3kn3CHRUo-tac-gHaDX?pid=ImgDet&rs=1">
+                <h3><a href="https://www.investing.com/">Investing.com</a></h3>
+                <p>Explore the world of stocks with Investing.com's in-depth technical analysis. Uncover key market trends, chart patterns, and trading signals that can shape your investment strategy.</p>
+            </div>
+
+            <div class="news-block">
+                <img style="border-radius: 5px; max-height: 50%; max-width: 50%;"src="https://yt3.ggpht.com/a-/AN66SAzJxz_aUEREjNsrz4bfHAGAw8yPe2Yxg-bs1g=s900-mo-c-c0xffffffff-rj-k-no">
+                <h3><a href="https://investingnews.com/">Investing News Network</a></h3>
+                <p>Discover investment opportunities in emerging markets with Investing News. From the latest developments in mining and commodities to breakthroughs in technology and healthcare, stay ahead of the curve. Investing News delivers timely updates on sectors poised for growth, making it a go-to resource for investors seeking the next big opportunity.</p>
+            </div>
+
+            <div class="news-block">
+                <img style="border-radius: 5px"src="https://th.bing.com/th/id/OIP.lLFTrOZW9lMGky-r-UTtBwHaC3?pid=ImgDet&rs=1">
+                <h3><a href="https://www.forbes.com/investing/?sh=7b77bb4610ba">Forbes Investing</a></h3>
+                <p>Elevate your wealth management strategy with Forbes Investing. Gain insights from industry leaders and financial experts on navigating the complexities of the investment landscape.</p>
+            </div>
+
+            <div class="news-block">
+                <img style="border-radius: 5px"src="https://th.bing.com/th/id/R.b7914e86bf847cace007a02dd7494d08?rik=WJVmNHKWOqW1Vw&pid=ImgRaw&r=0">
+                <h3><a href="https://www.goldmansachs.com/intelligence/series/the-markets/index.html">Goldman Sachs Intelligence</a></h3>
+                <p>Access unparalleled intelligence on the global economic landscape with Goldman Sachs. Explore in-depth analyses, market research, and expert perspectives on finance and investment.</p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
