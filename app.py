@@ -9,7 +9,7 @@ from flask import Flask, flash, redirect, render_template, request, session, url
 from flask_session import Session
 from tempfile import mkdtemp
 from werkzeug.security import check_password_hash, generate_password_hash
-from flask_socketio import SocketIO, send
+
 
 
 from helpers import apology, login_required, lookup, usd
@@ -317,6 +317,10 @@ def sell():
             info = lookup("cost")
             if info["marketStatus"] == False:
                 return render_template("closed.html", route='sell')
+            else:
+                session.pop("bypass_market_check", None)
+                rows = db.execute("SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
+                return render_template("sell.html", symbols=[row["symbol"] for row in rows])
         else:
             session.pop("bypass_market_check", None)
             rows = db.execute("SELECT symbol FROM transactions WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", user_id)
