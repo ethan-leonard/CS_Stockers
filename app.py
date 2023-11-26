@@ -1,6 +1,7 @@
 import os
 import datetime
 import json
+import openai
 from openai import OpenAI
 
 
