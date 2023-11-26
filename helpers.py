@@ -44,7 +44,7 @@ def lookup(symbol):
         # api_key = os.environ.get("API_KEY")
 
         # add this which is worse but should work
-        api_key = 'pk_b8b22f0adb644bc89ddf59406bd88720' #API_KEY here normally
+        api_key = 'pk_3a9da4521fe64c3586e6c93f193aba8c' #API_KEY here normally
         url = f"https://cloud.iexapis.com/stable/stock/{urllib.parse.quote_plus(symbol)}/quote?token={api_key}"
         response = requests.get(url)
         response.raise_for_status()
