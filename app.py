@@ -4,6 +4,8 @@ import json
 import openai
 from openai import OpenAI
 
+# api key: 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
+
 
 from cs50 import SQL
 from flask import Flask, flash, redirect, render_template, request, session, url_for
